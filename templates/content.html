@@ -10,7 +10,7 @@
         .divHeader {
             width: 90%;
             padding: 5px;
-            background-image: url("/images/header.png");
+            background: url("../images/header.png") no-repeat;
         }
 
         .divBodyR {
@@ -53,20 +53,38 @@
         </div>
 
         <div style="padding: 5px">
-            <input class="searchBox" type="text" placeholder="Bir kelime girin...">
-            <button class="searchBtn" type="button">Analiz Et!</button>
+            <form>
+                <input name="search_text" class="searchBox" type="text" placeholder="Bir kelime girin...">
+                <a href=# id=search_word>
+                    <button class="searchBtn" type="submit">Analiz Et!</button>
+                </a>
+            </form>
         </div>
 
         <div style="width: 90%; overflow: hidden;">
             <div class="divBodyL">
                 <label>
-                    <textarea rows="30" cols="30">...</textarea>
+                    <textarea rows="31" cols="32" readonly></textarea>
                 </label>
             </div>
 
             <div class="divBodyR" id="graphdiv"></div>
 
             <div class="divBodyR" id="chartdiv"></div>
+
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+            <script>
+                $(function() {
+                    $('a#search_word').bind('click', function() {
+                        $.getJSON('/search_word',
+                            function(data) {
+                            // bir sey yapma
+                            });
+                        return false;
+                    });
+                });
+            </script>
 
             <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 
