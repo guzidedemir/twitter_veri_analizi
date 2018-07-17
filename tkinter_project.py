@@ -11,10 +11,10 @@ class SentimentAnalysis:
 
     def DownloadData(self):
         # authenticating
-        consumerKey ="Z4IEpFGELpwESUBMREmrCo8bk"
-        consumerSecret ="IO21mAJ7va62eEIEuVaNpeRBxXDSQMI4kewtRtmX4lc3uoSCcu"
-        accessToken ="57120624-RkSaTDzrhLsRRNzQWm13Col4Pbfa8ocmGV5j6gfXv"
-        accessTokenSecret = "ndfTXDJ0qFxTUXk8QgzYmExUm7TQI52B6U2aUwRyFjB78"
+        consumerKey =""
+        consumerSecret =""
+        accessToken =""
+        accessTokenSecret = ""
         auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
         auth.set_access_token(accessToken, accessTokenSecret)
         api = tweepy.API(auth)
