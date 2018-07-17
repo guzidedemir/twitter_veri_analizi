@@ -9,8 +9,24 @@
     <style>
         .divHeader {
             width: 90%;
-            height: 90%;
-            background-image: url("../images/header.png");
+            padding: 5px;
+            background-image: url("/images/header.png");
+        }
+
+        .divBodyR {
+            width: 38%;
+            height: 500px;
+            padding: 5px;
+            float: left;
+            background-color: whitesmoke;
+        }
+
+        .divBodyL {
+            width: 20%;
+            height: 500px;
+            padding: 5px;
+            float: left;
+            background-color: whitesmoke;
         }
 
         .txtHeader {
@@ -23,7 +39,7 @@
         }
 
         .searchBtn {
-            width: 5%;
+            width: 10%;
             height: 50px;
         }
     </style>
@@ -36,9 +52,99 @@
             <h5 class="txtHeader">İstediğiniz kelimeleri içeren twitlerin pozitifliğini görün!</h5>
         </div>
 
-        <div>
+        <div style="padding: 5px">
             <input class="searchBox" type="text" placeholder="Bir kelime girin...">
             <button class="searchBtn" type="button">Analiz Et!</button>
+        </div>
+
+        <div style="width: 90%; overflow: hidden;">
+            <div class="divBodyL">
+                <label>
+                    <textarea rows="30" cols="30">...</textarea>
+                </label>
+            </div>
+
+            <div class="divBodyR" id="graphdiv"></div>
+
+            <div class="divBodyR" id="chartdiv"></div>
+
+            <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+
+            <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+            <script src="https://www.amcharts.com/lib/3/pie.js"></script>
+            <script src="https://www.amcharts.com/lib/3/xy.js"></script>
+            <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+            <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+            <script>
+                var chart_1 = AmCharts.makeChart( "chartdiv", {
+                    "type": "pie",
+                    "theme": "light",
+                    "dataProvider": [ {
+                        "country": "Lithuania",
+                        "litres": 501.9
+                    }, {
+                        "country": "The Netherlands",
+                        "litres": 50
+                    } ],
+                    "valueField": "litres",
+                    "titleField": "country",
+                    "balloon":{
+                        "fixedPosition":true
+                    },
+                    "export": {
+                        "enabled": true
+                    }
+                } );
+
+                var chart_2 = AmCharts.makeChart("graphdiv", {
+                    "type": "xy",
+                    "theme": "light",
+                    "balloon": {
+                        "adjustBorderColor": false,
+                        "shadowAlpha": 0,
+                        "fixedPosition": true
+                    },
+                    "graphs": [{
+                        "balloonText": "<div style='margin:5px;'><b>[[x]]</b><br>y:<b>[[y]]</b><br>value:<b>[[value]]</b></div>",
+                        "bullet": "diamond",
+                        "maxBulletSize": 25,
+                        "lineAlpha": 0.8,
+                        "lineThickness": 2,
+                        "lineColor": "#b0de09",
+                        "fillAlphas": 0,
+                        "xField": "date",
+                        "yField": "ay",
+                        "valueField": "aValue"
+                    }],
+                    "valueAxes": [{
+                        "id": "ValueAxis-1",
+                        "axisAlpha": 0
+                    }],
+                    "allLabels": [],
+                    "titles": [],
+                    "dataProvider": [{
+                        "date": 1,
+                        "ay": 6.5,
+                        "by": 2.2,
+                        "aValue": 15,
+                        "bValue": 10
+                    }, {
+                        "date": 2,
+                        "ay": 12.3,
+                        "by": 4.9,
+                        "aValue": 8,
+                        "bValue": 3
+                    }],
+                    "export": {
+                        "enabled": true
+                    },
+                    "chartCursor": {
+                        "pan": true,
+                        "cursorAlpha": 0,
+                        "valueLineAlpha": 0
+                    }
+                });
+            </script>
         </div>
     </center>
 </body>
