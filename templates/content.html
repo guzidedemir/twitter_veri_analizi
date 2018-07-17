@@ -10,7 +10,8 @@
         .divHeader {
             width: 90%;
             padding: 5px;
-            background: url("../images/header.png") no-repeat;
+            background: url("http://i.hizliresim.com/lZdoLE.png") no-repeat; {#../images/header.png#}
+            background-size: contain;
         }
 
         .divBodyR {
@@ -30,6 +31,7 @@
         }
 
         .txtHeader {
+            color: white;
             font-family: Verdana, sans-serif;
         }
 
@@ -45,26 +47,24 @@
     </style>
 </head>
 
-<body bgcolor="#d8e2e8">
+<body bgcolor="#abc7d6">
     <center>
         <div class="divHeader">
             <h1 class="txtHeader">Twit Analizi</h1>
-            <h5 class="txtHeader">İstediğiniz kelimeleri içeren twitlerin pozitifliğini görün!</h5>
+            <h5 class="txtHeader">{{ desc }}</h5>
         </div>
 
         <div style="padding: 5px">
-            <form>
-                <input name="search_text" class="searchBox" type="text" placeholder="Bir kelime girin...">
-                <a href=# id=search_word>
-                    <button class="searchBtn" type="submit">Analiz Et!</button>
-                </a>
+            <form action="{{ url_for('search_tweet') }}" method="post">
+                <input class="searchBox" name="search_input" type="text" placeholder="Bir kelime girin...">
+                <input class="searchBtn" type="submit" value="Analiz Et">
             </form>
         </div>
 
         <div style="width: 90%; overflow: hidden;">
             <div class="divBodyL">
                 <label>
-                    <textarea rows="31" cols="32" readonly></textarea>
+                    <textarea rows="31" cols="32" readonly>{{ tweet }}</textarea>
                 </label>
             </div>
 
@@ -72,96 +72,32 @@
 
             <div class="divBodyR" id="chartdiv"></div>
 
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-            <script>
-                $(function() {
-                    $('a#search_word').bind('click', function() {
-                        $.getJSON('/search_word',
-                            function(data) {
-                            // bir sey yapma
-                            });
-                        return false;
-                    });
-                });
-            </script>
+            <script type="text/javascript">
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
 
-            <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+                function drawChart() {
+                    var data_1 = google.visualization.arrayToDataTable([['No', 'Grade'], ["8", 22], ["4", 15]]);
+                    var options_1 = {
+                        'title':'Pie Chart',
+                        backgroundColor: 'transparent'
+                    };
+                    var piechart = new google.visualization.PieChart(document.getElementById('chartdiv'));
+                    piechart.draw(data_1, options_1);
 
-            <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
-            <script src="https://www.amcharts.com/lib/3/pie.js"></script>
-            <script src="https://www.amcharts.com/lib/3/xy.js"></script>
-            <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-            <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-            <script>
-                var chart_1 = AmCharts.makeChart( "chartdiv", {
-                    "type": "pie",
-                    "theme": "light",
-                    "dataProvider": [ {
-                        "country": "Lithuania",
-                        "litres": 501.9
-                    }, {
-                        "country": "The Netherlands",
-                        "litres": 50
-                    } ],
-                    "valueField": "litres",
-                    "titleField": "country",
-                    "balloon":{
-                        "fixedPosition":true
-                    },
-                    "export": {
-                        "enabled": true
-                    }
-                } );
-
-                var chart_2 = AmCharts.makeChart("graphdiv", {
-                    "type": "xy",
-                    "theme": "light",
-                    "balloon": {
-                        "adjustBorderColor": false,
-                        "shadowAlpha": 0,
-                        "fixedPosition": true
-                    },
-                    "graphs": [{
-                        "balloonText": "<div style='margin:5px;'><b>[[x]]</b><br>y:<b>[[y]]</b><br>value:<b>[[value]]</b></div>",
-                        "bullet": "diamond",
-                        "maxBulletSize": 25,
-                        "lineAlpha": 0.8,
-                        "lineThickness": 2,
-                        "lineColor": "#b0de09",
-                        "fillAlphas": 0,
-                        "xField": "date",
-                        "yField": "ay",
-                        "valueField": "aValue"
-                    }],
-                    "valueAxes": [{
-                        "id": "ValueAxis-1",
-                        "axisAlpha": 0
-                    }],
-                    "allLabels": [],
-                    "titles": [],
-                    "dataProvider": [{
-                        "date": 1,
-                        "ay": 6.5,
-                        "by": 2.2,
-                        "aValue": 15,
-                        "bValue": 10
-                    }, {
-                        "date": 2,
-                        "ay": 12.3,
-                        "by": 4.9,
-                        "aValue": 8,
-                        "bValue": 3
-                    }],
-                    "export": {
-                        "enabled": true
-                    },
-                    "chartCursor": {
-                        "pan": true,
-                        "cursorAlpha": 0,
-                        "valueLineAlpha": 0
-                    }
-                });
+                    var data_2 = google.visualization.arrayToDataTable([['Age', 'Weight'], [8, 12], [4, 5.5]]);
+                    var options_2 = {
+                        title: 'Scatter Plot',
+                        backgroundColor: 'transparent',
+                        hAxis: {title: 'Age', minValue: 0, maxValue: 15},
+                        vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
+                        legend: 'none'
+                    };
+                    var scatter = new google.visualization.ScatterChart(document.getElementById('graphdiv'));
+                    scatter.draw(data_2, options_2);
+                }
             </script>
         </div>
     </center>
