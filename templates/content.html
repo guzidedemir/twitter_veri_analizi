@@ -79,15 +79,15 @@
                 google.charts.setOnLoadCallback(drawChart);
 
                 function drawChart() {
-                    var data_1 = google.visualization.arrayToDataTable([['No', 'Grade'], ["8", 22], ["4", 15]]);
+                    var data_1 = google.visualization.arrayToDataTable([['Category', 'Amount'], ['Positive', 8], ['Negative', 2]]); {#{{ chart }}#}
                     var options_1 = {
-                        'title':'Pie Chart',
+                        title: 'Pie Chart',
                         backgroundColor: 'transparent'
                     };
                     var piechart = new google.visualization.PieChart(document.getElementById('chartdiv'));
                     piechart.draw(data_1, options_1);
 
-                    var data_2 = google.visualization.arrayToDataTable([['Age', 'Weight'], [8, 12], [4, 5.5]]);
+                    var data_2 = google.visualization.arrayToDataTable([['Time', 'Sentiment'], ["10:54", 0.7], ["11:22", 0.5]]); {#{{ graph }}#}
                     var options_2 = {
                         title: 'Scatter Plot',
                         backgroundColor: 'transparent',
