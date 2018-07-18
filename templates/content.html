@@ -44,6 +44,12 @@
             width: 10%;
             height: 50px;
         }
+
+        .timeline {
+            resize: none;
+            background-color: ghostwhite;
+            font-family: Verdana, sans-serif;
+        }
     </style>
 </head>
 
@@ -64,7 +70,7 @@
         <div style="width: 90%; overflow: hidden;">
             <div class="divBodyL">
                 <label>
-                    <textarea rows="31" cols="32" readonly>{{ tweet }}</textarea>
+                    <textarea class="timeline" rows="23" cols="32" readonly>{{ tweet }}</textarea>
                 </label>
             </div>
 
