@@ -87,7 +87,7 @@
                 function drawChart() {
                     var data_1 = google.visualization.arrayToDataTable({{ chart | safe }});
                     var options_1 = {
-                        title: 'Pie Chart',
+                        title: 'Dilim Grafiği',
                         backgroundColor: 'transparent'
                     };
                     var piechart = new google.visualization.PieChart(document.getElementById('chartdiv'));
@@ -95,10 +95,10 @@
 
                     var data_2 = google.visualization.arrayToDataTable({{ graph | safe }});
                     var options_2 = {
-                        title: 'Scatter Plot',
+                        title: 'Dağılım Grafiği',
                         backgroundColor: 'transparent',
-                        hAxis: {title: 'Age', minValue: 0, maxValue: 15},
-                        vAxis: {title: 'Weight', minValue: 0, maxValue: 15},
+                        {#hAxis: {title: 'Kullanıcı', minValue: 0, maxValue: 15},#}
+                        {#vAxis: {title: 'Pozitiflik', minValue: 0, maxValue: 15},#}
                         legend: 'none'
                     };
                     var scatter = new google.visualization.ScatterChart(document.getElementById('graphdiv'));

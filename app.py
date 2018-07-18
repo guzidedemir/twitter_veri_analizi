@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from tweet import SentimentAnalysis
 
 app = Flask(__name__)
 
@@ -8,14 +9,17 @@ def hello_world(word=None):
     # http://localhost:5000/
 
     if word is None:
-        word = "Python"
+        word = "default"
         description = "İstediğiniz kelimeleri içeren twitlerin pozitifliğini görün!"
     else:
         description = "Aranan kelime: {}".format(word)
 
-    tweet_data = "Twit 1\nTwit 2\nTwit 3"
-    chart_data = [['Category', 'Amount'], ['Positive', 8], ['Negative', 2]]
-    graph_data = [['Time', 'Sentiment'], ["10:54", 0.7], ["11:22", 0.5]]
+    tweet_data, chart_data, graph_data = SentimentAnalysis(word, 25).downloadData()
+
+    # Data Sample:
+    # tweet_data = "Twit 1\nTwit 2\nTwit 3"
+    # chart_data = [['Category', 'Amount'], ['Positive', 8], ['Negative', 2]]
+    # graph_data = [['Time', 'Sentiment'], ["10:54", 0.7], ["11:22", 0.5]]
 
     return render_template("content.html", desc=description, tweet=tweet_data, chart=chart_data, graph=graph_data)
 
