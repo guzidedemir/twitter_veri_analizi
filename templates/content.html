@@ -79,7 +79,7 @@
                 google.charts.setOnLoadCallback(drawChart);
 
                 function drawChart() {
-                    var data_1 = google.visualization.arrayToDataTable([['Category', 'Amount'], ['Positive', 8], ['Negative', 2]]); {#{{ chart }}#}
+                    var data_1 = google.visualization.arrayToDataTable({{ chart | safe }});
                     var options_1 = {
                         title: 'Pie Chart',
                         backgroundColor: 'transparent'
@@ -87,7 +87,7 @@
                     var piechart = new google.visualization.PieChart(document.getElementById('chartdiv'));
                     piechart.draw(data_1, options_1);
 
-                    var data_2 = google.visualization.arrayToDataTable([['Time', 'Sentiment'], ["10:54", 0.7], ["11:22", 0.5]]); {#{{ graph }}#}
+                    var data_2 = google.visualization.arrayToDataTable({{ graph | safe }});
                     var options_2 = {
                         title: 'Scatter Plot',
                         backgroundColor: 'transparent',
