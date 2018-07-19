@@ -13,10 +13,10 @@ class SentimentAnalysis:
 
     def downloadData(self):
         # authenticating
-        consumerKey ="Z4IEpFGELpwESUBMREmrCo8bk"
-        consumerSecret ="IO21mAJ7va62eEIEuVaNpeRBxXDSQMI4kewtRtmX4lc3uoSCcu"
-        accessToken ="57120624-RkSaTDzrhLsRRNzQWm13Col4Pbfa8ocmGV5j6gfXv"
-        accessTokenSecret = "ndfTXDJ0qFxTUXk8QgzYmExUm7TQI52B6U2aUwRyFjB78"
+        consumerKey ="u58cZw3aC3E5l7WlsXFqEbN3D"
+        consumerSecret ="PfiLoA5sqsApOb1vHT7blJy0i0fD0dTWwawtk2BPXm4d0ja9zY"
+        accessToken ="2539495514-OQTJwMjPKurUoRL0kqh5RoRTOTUWJ8ClqFEQzM1"
+        accessTokenSecret = "i3nlsfHwIfeUvgmz0MbnhXeU2laxkYhWGC3PA5qF4aKgY"
         auth = tweepy.OAuthHandler(consumerKey, consumerSecret)
         auth.set_access_token(accessToken, accessTokenSecret)
         api = tweepy.API(auth)
@@ -24,13 +24,6 @@ class SentimentAnalysis:
         # input for term to be searched and how many tweets to search
         # searchTerm = input("Aranacak kelime/hashtag yazınız: ")
         # NoOfTerms = int(input("Kaç tweet arasından analiz edilsin: "))
-
-
-
-
-
-
-
 
         # searching for tweets
         self.tweets = tweepy.Cursor(api.search,q=self.searchTerm, lang = "tr").items(self.noOfTerms)## ingilizce tivitleri alıyor.
