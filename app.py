@@ -10,7 +10,7 @@ def hello_world(word=None):
 
     if word is None:
         word = "default"
-        description = "İstediğiniz kelimeleri içeren twitlerin pozitifliğini görün!"
+        description = "İstediğiniz kelimeleri içeren tweetleri analiz edin!"
     else:
         description = "Aranan kelime: {}".format(word)
 
