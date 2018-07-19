@@ -67,8 +67,9 @@ class SentimentAnalysis:
             except:
                 analysis = TextBlob(tweet.text)
             # print(analysis.sentiment)  # print tweet's polarity
+
             polarity += analysis.sentiment.polarity  # adding up polarities to find the average later
-            stream.append([tweet.user.screen_name, polarity])
+            stream.append([tweet.user.screen_name, analysis.sentiment.polarity])
             if (analysis.sentiment.polarity == 0):  # adding reaction of how people are reacting to find average later
                 neutral += 1
             elif (analysis.sentiment.polarity > 0 and analysis.sentiment.polarity <= 0.3):
