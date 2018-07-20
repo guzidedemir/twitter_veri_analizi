@@ -14,7 +14,7 @@ def hello_world(word=None):
     else:
         description = "Aranan kelime: {}".format(word)
 
-    tweet_data, chart_data, graph_data = SentimentAnalysis(word, 25).downloadData()
+    tweet_data, chart_data, graph_data = SentimentAnalysis(word, 30).downloadData()
 
     # Data Sample:
     # tweet_data = "Twit 1\nTwit 2\nTwit 3"
